@@ -36,9 +36,8 @@ app.get("/jwt", (req, res) => {
   res.send(newUserToken);
 });
 
-// Need Test
-// 이거 어떻게 실행하는거지
 function isAuthorized(req, res, next) {
+  console.log(req.headers.authorization, "tk");
   if (typeof req.headers.authorization !== "undefined") {
     let token = req.headers.authorization.split(" ")[1];
 
@@ -52,7 +51,6 @@ function isAuthorized(req, res, next) {
       }
     });
   } else {
-    console.log(11111);
     return res.send("잘못된 접근!");
   }
 }
