@@ -37,7 +37,6 @@ app.get("/jwt", (req, res) => {
 });
 
 function isAuthorized(req, res, next) {
-  console.log(req.headers.authorization, "tk");
   if (typeof req.headers.authorization !== "undefined") {
     let token = req.headers.authorization.split(" ")[1];
 
