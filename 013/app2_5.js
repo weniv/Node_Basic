@@ -5,63 +5,65 @@
 // npm i jsonwebtoken express express-session
 // npm i nodemon --save-dev
 
-const express = require('express');
-const session = require('express-session'); // 이렇게 생성하면! req.session이 생성이 됩니다!
-const jwt = require('jsonwebtoken');
+const express = require("express");
+const session = require("express-session"); // 이렇게 생성하면! req.session이 생성이 됩니다!
+const jwt = require("jsonwebtoken");
 
-const jwtsecret = 'hello world';
+const jwtsecret = "hello world";
 
 const app = express();
 
-app.get('/', (req, res, next) => {
-    res.send('hello jwt!!!');
+app.get("/", (req, res, next) => {
+  res.send("hello jwt!!!");
 });
 
 // 비밀 게시판
-app.get('/secret', isAuthorized, (req, res) => {
-    res.json({ "m": "secret notice" });
+app.get("/secret", isAuthorized, (req, res) => {
+  res.json({ m: "secret notice" });
 });
 
 // 일반 게시판
-app.get('/readme', (req, res) => {
-    res.json({ "m": "share notice" });
+app.get("/readme", (req, res) => {
+  res.json({ m: "share notice" });
 });
 
-app.get('/jwt', (req, res) => {
+app.get("/jwt", (req, res) => {
+  // JWT 토큰 생성(id와 blog 주소를 담아서)
+  const newUserToken = jwt.sign({ 임시id: "hello" }, jwtsecret, {
+    expiresIn: 60 * 3, // 60초 유효 토큰 test할 때에는 뒤에 값을 늘려주세요.
+  });
 
-    // JWT 토큰 생성(id와 blog 주소를 담아서)
-    const newUserToken = jwt.sign({ "임시id": "hello" }, jwtsecret,{
-        expiresIn: 60 * 3  // 60초 유효 토큰 test할 때에는 뒤에 값을 늘려주세요.
-    });
-
-    res.send(newUserToken);
+  res.send(newUserToken);
 });
 
+// Need Test
+// 이거 어떻게 실행하는거지
 function isAuthorized(req, res, next) {
-    if (typeof req.headers.authorization !== "undefined") {
-        let token = req.headers.authorization.split(" ")[1];
+  if (typeof req.headers.authorization !== "undefined") {
+    let token = req.headers.authorization.split(" ")[1];
 
-        jwt.verify(token, jwtsecret, (err, encode)=>{
-            if (err) {
-                console.log(err);
-                return res.send('잘못된 접근!');
-            } else {
-                console.log(encode)
-                return next();
-            }
-        });
-    } else {
-        return res.send('잘못된 접근!');
-    }
+    jwt.verify(token, jwtsecret, (err, encode) => {
+      if (err) {
+        console.log(err);
+        return res.send("잘못된 접근!");
+      } else {
+        console.log(encode);
+        return next();
+      }
+    });
+  } else {
+    console.log(11111);
+    return res.send("잘못된 접근!");
+  }
 }
 
 app.use((req, res, next) => {
-    res.status(404).send('못찾음!');
+  res.status(404).send("못찾음!");
 });
 
 app.use((err, req, res, next) => {
-    console.log('애러발생!');
-    console.log(err);
+  console.log("애러발생!");
+  console.log(err);
 });
 
 app.listen(8080);
