@@ -1,2 +1,2 @@
-import index from './index.mjs';
+import index from './02_index.mjs';
 console.log(index);
