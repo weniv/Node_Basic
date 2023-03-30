@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require('path')
 
 console.log(`구분자 : ${path.sep}`); // 구분자는 OS마다 다르기 때문에 폴더나 파일 경로를 사용할 때 path.sep을 사용해주셔야 합니다.
 console.log(`디렉토리 : ${path.dirname(__filename)}`);
