@@ -15,10 +15,10 @@ function makeErrorLog(errorFilePath) {
 }
 
 const errorFilePath = path.join(__dirname, 'error.log');
-const errorLogger = errorLog(errorFilePath);
+const errorLogger = makeErrorLog(errorFilePath);
 
 try {
-    throw new Error('Error coccurs!');
+    throw new Error('Error occurs!');
 } catch (err) {
     errorLogger(err);
 }
