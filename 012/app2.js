@@ -3,10 +3,10 @@
 // 메시지 추가!
 /*
 http://localhost:8080/signup, raw, json
-{
-    "name":"leehojun",
-    "age":10,
-    "nickname":"paullab"
+{    
+    "name":"leehojun",
+    "age":10,
+    "nickname": "paullab"
 }
 */
 
@@ -24,7 +24,7 @@ app.post(
   "/signup",
   valibody("name")
     .isLength({ min: 3, max: 20 })
-    .withMessage("3자 이상 20자 이하!!"),
+    .withMessage("이름: 3자 이상 20자 이하!"),
   (req, res, next) => {
     const err = valiresult(req);
     if (err.isEmpty()) {

@@ -3,15 +3,12 @@
 // npm i nodemon --save-dev
 /*
 http://localhost:8080/signup, raw, json
-{
-    "name":"leehojun",
-    "age":10,
-    "nickname":"paullab"
+{    
+    "name":"leehojun",
+    "age":10,
+    "nickname": "paullab"
 }
 */
-
-// Need Test -- 12번 전체
-// post 요청시 syntaxerror: unexpected token in json at position 3
 
 const express = require("express");
 const expressValidator = require("express-validator");
@@ -27,14 +24,12 @@ app.post(
   "/signup",
   valibody("name").isLength({ min: 3, max: 20 }),
   (req, res, next) => {
-    const err = valiresult(req);
+    const err = valiresult(req.body);
     if (err.isEmpty()) {
-      console.log(req.body);
-      // 아래 문법 대신 sendStatus를 사용해도 됩니다.
-      res.status(201).send("hello world!!"); // 201 Created
+      console.log(req.body); // 아래 문법 대신 sendStatus를 사용해도 됩니다.
+      res.status(201).send("hello world!!"); // 201 Created
     } else {
-      console.log(req.body);
-      // 아래 문법 대신 sendStatus를 사용해도 됩니다.
+      console.log(req.body); // 아래 문법 대신 sendStatus를 사용해도 됩니다.
       res.status(400).send("error!!"); // 400 Bad Request
     }
   }
