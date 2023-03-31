@@ -1,5 +1,5 @@
 // npm init --yes
-// npm i jsonwebtoken npm  express express-session cookie-parser
+// npm i jsonwebtoken bcrypt express express-session cookie-parser
 // npm i nodemon --save-dev
 
 // 모듈화까진 이 챕터에서 진행하지 않으나 좋은 글이 있어 포스팅합니다.
