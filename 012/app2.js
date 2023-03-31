@@ -24,7 +24,7 @@ app.post(
   "/signup",
   valibody("name")
     .isLength({ min: 3, max: 20 })
-    .withMessage("이름: 3자 이상 20자 이하!"),
+    .withMessage("3자 이상 20자 이하!"),
   (req, res, next) => {
     const err = valiresult(req);
     if (err.isEmpty()) {
