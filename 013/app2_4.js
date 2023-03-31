@@ -10,6 +10,13 @@
 // 방법1로 하였을 때 postman에서 잘 돌아가지만, 일반 브라우저에서는 잘 안돌아갑니다.
 // 이유는 front-end에서 처리를 안해줘서 그런데요. 다음 장에서 좀 더 상세히 살펴보겠습니다.
 
+// http://localhost:8080/join, raw, json
+// {
+//     "id":"hojun",
+//     "password":"p1234",
+//     "blog": "www.abc.co.kr"
+// }
+
 const express = require("express");
 const session = require("express-session"); // 이렇게 생성하면! req.session이 생성이 됩니다!
 const jwt = require("jsonwebtoken");
@@ -41,8 +48,6 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-// Need Test
-// SyntaxError: Unexpected token / in JSON at position 100
 // 회원가입
 app.post("/join", async (req, res, next) => {
   const { id, password, blog } = req.body;

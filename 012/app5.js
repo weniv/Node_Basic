@@ -7,10 +7,10 @@
 // 메시지 추가!
 /*
 http://localhost:8080/signup, raw, json
-{
-    "name":"leehojun",
-    "age":10,
-    "nickname":"paullab"
+{    
+    "name":"leehojun",
+    "age":10,
+    "nickname": "paullab"
 }
 */
 
